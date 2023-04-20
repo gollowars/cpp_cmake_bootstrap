@@ -11,6 +11,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True) ## C++11であることを指定して、C++11以外のコンパイラを使うとエラーにする
 
 
+# Library
+add_library(csv_parser STATIC ./src/CSVParser.cpp)
+target_include_directories(csv_parser PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # buildターゲット（この場合はPROJECT_NAMEであるExampleに）main.cppを追加
 add_executable(${PROJECT_NAME} ./src/main.cpp) 
@@ -22,8 +25,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/i
 set(MY_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_sources(${PROJECT_NAME} PRIVATE 
     ${MY_SOURCE_DIR}/MyClass.cpp
-    ${MY_SOURCE_DIR}/CSVParser.cpp
 )
+
+# ライブラリをリンクする。
+target_link_libraries(${PROJECT_NAME} csv_parser)
 
 
 ## assetをコピーする
