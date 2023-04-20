@@ -31,5 +31,5 @@ configure_file(${CMAKE_SOURCE_DIR}/data/sample.csv ${CMAKE_CURRENT_BINARY_DIR}/d
 
 
 get_target_property(headers ${PROJECT_NAME} SOURCES)
-message(STATUS "headers : ${headers}")
+message(STATUS "headers : ${headers}") # これはあってもなくても良いけどメッセージを確認す
 
