@@ -12,23 +12,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True) ## C++11であることを指定して、C
 
 
 # Library
-add_library(csv_parser STATIC ./src/CSVParser.cpp)
-target_include_directories(csv_parser PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# buildターゲット（この場合はPROJECT_NAMEであるExampleに）main.cppを追加
-add_executable(${PROJECT_NAME} ./src/main.cpp) 
-
-# ヘッダーファイルの読み込み
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-## ソースファイルを追加する 
 set(MY_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-target_sources(${PROJECT_NAME} PRIVATE 
+add_library(mylib STATIC 
+    ${MY_SOURCE_DIR}/CSVParser.cpp
     ${MY_SOURCE_DIR}/MyClass.cpp
 )
+target_include_directories(mylib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# buildターゲット（この場合はPROJECT_NAMEであるExampleに）main.cppを追加
+add_executable(${PROJECT_NAME} ./main.cpp) 
 
 # ライブラリをリンクする。
-target_link_libraries(${PROJECT_NAME} csv_parser)
+target_link_libraries(${PROJECT_NAME} mylib)
 
 
 ## assetをコピーする
