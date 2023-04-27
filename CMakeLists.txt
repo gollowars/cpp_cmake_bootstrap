@@ -23,21 +23,19 @@ target_include_directories(mylib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # buildターゲット（この場合はPROJECT_NAMEであるExampleに）main.cppを追加
 add_executable(${PROJECT_NAME} ./main.cpp) 
 
+
+## libloを読み込む設定を記述していく。
+
+## CMAKE_MODULE_PATHにcmakeディレクトリを追加
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+find_package(Liblo REQUIRED)
+
+# libloライブラリをリンク
 # ライブラリをリンクする。
-target_link_libraries(${PROJECT_NAME} mylib)
-
-
-# Third paty library
-# link liblo
-# libloのインクルードディレクトリを指定
-set(LIBLO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/liblo)
-include_directories(${LIBLO_DIR}/include)
-
-# libloのライブラリを指定
-add_library(liblo SHARED IMPORTED)
-set_property(TARGET liblo PROPERTY 
-    IMPORTED_LOCATION ${LIBLO_DIR}/lib/liblo.dylib)
-target_link_libraries(${PROJECT_NAME} liblo)
+target_link_libraries(${PROJECT_NAME} 
+    PRIVATE liblo mylib
+)
 
 
 ## assetをコピーする
