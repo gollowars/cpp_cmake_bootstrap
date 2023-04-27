@@ -31,6 +31,11 @@ int main(int, char**) {
     parser.print();
 
 
+
+    lo_address addr = lo_address_new("localhost", "1234");
+    lo_send(addr, "/foo", "i", 1234);
+    lo_address_free(addr);
+
     return 0;
     
 }
