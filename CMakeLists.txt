@@ -35,7 +35,8 @@ include_directories(${LIBLO_DIR}/include)
 
 # libloのライブラリを指定
 add_library(liblo SHARED IMPORTED)
-set_property(TARGET liblo PROPERTY IMPORTED_LOCATION ${LIBLO_DIR}/lib/liblo.dylib)
+set_property(TARGET liblo PROPERTY 
+    IMPORTED_LOCATION ${LIBLO_DIR}/lib/liblo.dylib)
 target_link_libraries(${PROJECT_NAME} liblo)
 
 
