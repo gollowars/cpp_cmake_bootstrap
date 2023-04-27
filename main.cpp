@@ -3,6 +3,8 @@
 #include "MyClass.h"
 #include "CSVParser.h"
 
+#include <lo/lo.h>
+
 int main(int, char**) {
     std::cout << "Hello, world test7 !\n";
 

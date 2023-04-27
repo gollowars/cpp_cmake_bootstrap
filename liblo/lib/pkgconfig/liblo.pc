@@ -1,0 +1,10 @@
+prefix=/Users/gollowars/works/sony_cam_util/100_dev/00_ex/liblo
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: liblo
+Version: 0.31
+Description: A lightweight OSC server/client library
+Libs: -L${libdir} -llo  
+Cflags: -I${includedir}
